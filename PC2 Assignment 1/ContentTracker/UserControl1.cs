@@ -31,5 +31,15 @@ namespace ContentTracker
         {
 
         }
+
+        private void triggerUserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+
+        }
+
+        private void triggerUserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+
+        }
     }
 }
