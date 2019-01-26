@@ -1,6 +1,6 @@
 ﻿namespace ContentTracker
 {
-    partial class UserControl1
+    partial class PriorityHomeworkTracker
     {
         /// <summary>
         /// Required designer variable.
@@ -55,6 +55,7 @@
             this.TaskGridView.Name = "TaskGridView";
             this.TaskGridView.Size = new System.Drawing.Size(379, 256);
             this.TaskGridView.TabIndex = 0;
+            this.TaskGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TaskGridView_CellContentClick);
             this.TaskGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.triggerUserAddedRow);
             this.TaskGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.triggerUserDeletedRow);
             // 
@@ -78,7 +79,6 @@
             this.uncheckAllToolStripMenuItem});
             this.TaskGridContextMenu.Name = "TaskGridContextMenu";
             this.TaskGridContextMenu.Size = new System.Drawing.Size(138, 48);
-            this.TaskGridContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // checkAllToolStripMenuItem
             // 
@@ -101,7 +101,7 @@
             this.priorityGroupBox.Controls.Add(this.lowPriorityRadio);
             this.priorityGroupBox.Location = new System.Drawing.Point(16, 17);
             this.priorityGroupBox.Name = "priorityGroupBox";
-            this.priorityGroupBox.Size = new System.Drawing.Size(102, 108);
+            this.priorityGroupBox.Size = new System.Drawing.Size(102, 113);
             this.priorityGroupBox.TabIndex = 1;
             this.priorityGroupBox.TabStop = false;
             this.priorityGroupBox.Text = "Priority";
@@ -117,6 +117,7 @@
             this.lowPriorityRadio.TabStop = true;
             this.lowPriorityRadio.Text = "Low";
             this.lowPriorityRadio.UseVisualStyleBackColor = true;
+            this.lowPriorityRadio.CheckedChanged += new System.EventHandler(this.priorityRadioChanged);
             // 
             // mediumPriorityRadio
             // 
@@ -128,6 +129,7 @@
             this.mediumPriorityRadio.TabStop = true;
             this.mediumPriorityRadio.Text = "Medium";
             this.mediumPriorityRadio.UseVisualStyleBackColor = true;
+            this.mediumPriorityRadio.CheckedChanged += new System.EventHandler(this.priorityRadioChanged);
             // 
             // highPriorityRadio
             // 
@@ -139,14 +141,15 @@
             this.highPriorityRadio.TabStop = true;
             this.highPriorityRadio.Text = "High";
             this.highPriorityRadio.UseVisualStyleBackColor = true;
+            this.highPriorityRadio.CheckedChanged += new System.EventHandler(this.priorityRadioChanged);
             // 
-            // UserControl1
+            // PriorityHomeworkTracker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.priorityGroupBox);
             this.Controls.Add(this.TaskGridView);
-            this.Name = "UserControl1";
+            this.Name = "PriorityHomeworkTracker";
             this.Size = new System.Drawing.Size(539, 297);
             ((System.ComponentModel.ISupportInitialize)(this.TaskGridView)).EndInit();
             this.TaskGridContextMenu.ResumeLayout(false);
