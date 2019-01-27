@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.TaskGridView = new System.Windows.Forms.DataGridView();
-            this.CheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.TextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TaskGridContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.checkAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uncheckAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +37,8 @@
             this.highPriorityRadio = new System.Windows.Forms.RadioButton();
             this.mediumPriorityRadio = new System.Windows.Forms.RadioButton();
             this.lowPriorityRadio = new System.Windows.Forms.RadioButton();
+            this.CheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.TextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.TaskGridView)).BeginInit();
             this.TaskGridContextMenu.SuspendLayout();
             this.priorityGroupBox.SuspendLayout();
@@ -55,22 +55,9 @@
             this.TaskGridView.Name = "TaskGridView";
             this.TaskGridView.Size = new System.Drawing.Size(379, 256);
             this.TaskGridView.TabIndex = 0;
-            this.TaskGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.TaskGridView_CellContentClick);
+            this.TaskGridView.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.TaskGridView_CellValueChanged);
             this.TaskGridView.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.triggerUserAddedRow);
             this.TaskGridView.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.triggerUserDeletedRow);
-            // 
-            // CheckBoxColumn
-            // 
-            this.CheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.CheckBoxColumn.HeaderText = "Done";
-            this.CheckBoxColumn.Name = "CheckBoxColumn";
-            this.CheckBoxColumn.Width = 39;
-            // 
-            // TextBoxColumn
-            // 
-            this.TextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TextBoxColumn.HeaderText = "Task";
-            this.TextBoxColumn.Name = "TextBoxColumn";
             // 
             // TaskGridContextMenu
             // 
@@ -146,6 +133,21 @@
             this.lowPriorityRadio.UseVisualStyleBackColor = true;
             this.lowPriorityRadio.CheckedChanged += new System.EventHandler(this.priorityRadioChanged);
             // 
+            // CheckBoxColumn
+            // 
+            this.CheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.CheckBoxColumn.FalseValue = "False";
+            this.CheckBoxColumn.HeaderText = "Done";
+            this.CheckBoxColumn.Name = "CheckBoxColumn";
+            this.CheckBoxColumn.TrueValue = "True";
+            this.CheckBoxColumn.Width = 39;
+            // 
+            // TextBoxColumn
+            // 
+            this.TextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TextBoxColumn.HeaderText = "Task";
+            this.TextBoxColumn.Name = "TextBoxColumn";
+            // 
             // PriorityHomeworkTracker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -165,8 +167,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView TaskGridView;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn CheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TextBoxColumn;
         private System.Windows.Forms.ContextMenuStrip TaskGridContextMenu;
         private System.Windows.Forms.ToolStripMenuItem checkAllToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uncheckAllToolStripMenuItem;
@@ -174,5 +174,7 @@
         private System.Windows.Forms.RadioButton highPriorityRadio;
         private System.Windows.Forms.RadioButton mediumPriorityRadio;
         private System.Windows.Forms.RadioButton lowPriorityRadio;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn CheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TextBoxColumn;
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace HomeworkTracker
+﻿namespace HomeworkTracker.View
 {
-    partial class homeworkTrackerForm
+    partial class HomeworkTrackerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -13,9 +13,9 @@
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (this.components != null))
             {
-                components.Dispose();
+                this.components.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -30,13 +30,13 @@
         {
             this.classTabControl = new System.Windows.Forms.TabControl();
             this.firstClassTab = new System.Windows.Forms.TabPage();
-            this.firstTabHomeworkTracker = new ContentTracker.PriorityHomeworkTracker();
             this.secondClassTab = new System.Windows.Forms.TabPage();
-            this.secondTabHomeworkTracker = new ContentTracker.PriorityHomeworkTracker();
             this.thirdClassTab = new System.Windows.Forms.TabPage();
-            this.thirdTabHomeworkTracker = new ContentTracker.PriorityHomeworkTracker();
             this.readOnlyTextBox = new System.Windows.Forms.TextBox();
             this.outputTextBox = new System.Windows.Forms.TextBox();
+            this.firstTabHomeworkTracker = new ContentTracker.PriorityHomeworkTracker();
+            this.secondTabHomeworkTracker = new ContentTracker.PriorityHomeworkTracker();
+            this.thirdTabHomeworkTracker = new ContentTracker.PriorityHomeworkTracker();
             this.classTabControl.SuspendLayout();
             this.firstClassTab.SuspendLayout();
             this.secondClassTab.SuspendLayout();
@@ -67,14 +67,6 @@
             this.firstClassTab.TabIndex = 0;
             this.firstClassTab.Text = "CS 1301";
             // 
-            // firstTabHomeworkTracker
-            // 
-            this.firstTabHomeworkTracker.BackColor = System.Drawing.Color.Transparent;
-            this.firstTabHomeworkTracker.Location = new System.Drawing.Point(6, 6);
-            this.firstTabHomeworkTracker.Name = "firstTabHomeworkTracker";
-            this.firstTabHomeworkTracker.Size = new System.Drawing.Size(539, 297);
-            this.firstTabHomeworkTracker.TabIndex = 0;
-            // 
             // secondClassTab
             // 
             this.secondClassTab.BackColor = System.Drawing.Color.White;
@@ -86,13 +78,6 @@
             this.secondClassTab.TabIndex = 1;
             this.secondClassTab.Text = "CS 2100";
             // 
-            // secondTabHomeworkTracker
-            // 
-            this.secondTabHomeworkTracker.Location = new System.Drawing.Point(6, 6);
-            this.secondTabHomeworkTracker.Name = "secondTabHomeworkTracker";
-            this.secondTabHomeworkTracker.Size = new System.Drawing.Size(530, 290);
-            this.secondTabHomeworkTracker.TabIndex = 0;
-            // 
             // thirdClassTab
             // 
             this.thirdClassTab.BackColor = System.Drawing.Color.White;
@@ -103,13 +88,6 @@
             this.thirdClassTab.Size = new System.Drawing.Size(551, 317);
             this.thirdClassTab.TabIndex = 2;
             this.thirdClassTab.Text = "ENGL 3405";
-            // 
-            // thirdTabHomeworkTracker
-            // 
-            this.thirdTabHomeworkTracker.Location = new System.Drawing.Point(6, 6);
-            this.thirdTabHomeworkTracker.Name = "thirdTabHomeworkTracker";
-            this.thirdTabHomeworkTracker.Size = new System.Drawing.Size(539, 297);
-            this.thirdTabHomeworkTracker.TabIndex = 0;
             // 
             // readOnlyTextBox
             // 
@@ -128,11 +106,37 @@
             this.outputTextBox.Location = new System.Drawing.Point(16, 394);
             this.outputTextBox.Multiline = true;
             this.outputTextBox.Name = "outputTextBox";
+            this.outputTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.outputTextBox.Size = new System.Drawing.Size(551, 267);
             this.outputTextBox.TabIndex = 2;
             this.outputTextBox.Text = "Output will be here.";
             // 
-            // homeworkTrackerForm
+            // firstTabHomeworkTracker
+            // 
+            this.firstTabHomeworkTracker.BackColor = System.Drawing.Color.Transparent;
+            this.firstTabHomeworkTracker.Location = new System.Drawing.Point(6, 6);
+            this.firstTabHomeworkTracker.Name = "firstTabHomeworkTracker";
+            this.firstTabHomeworkTracker.Size = new System.Drawing.Size(539, 297);
+            this.firstTabHomeworkTracker.TabIndex = 0;
+            this.firstTabHomeworkTracker.Tag = "1";
+            // 
+            // secondTabHomeworkTracker
+            // 
+            this.secondTabHomeworkTracker.Location = new System.Drawing.Point(6, 6);
+            this.secondTabHomeworkTracker.Name = "secondTabHomeworkTracker";
+            this.secondTabHomeworkTracker.Size = new System.Drawing.Size(530, 290);
+            this.secondTabHomeworkTracker.TabIndex = 0;
+            this.secondTabHomeworkTracker.Tag = "1";
+            // 
+            // thirdTabHomeworkTracker
+            // 
+            this.thirdTabHomeworkTracker.Location = new System.Drawing.Point(6, 6);
+            this.thirdTabHomeworkTracker.Name = "thirdTabHomeworkTracker";
+            this.thirdTabHomeworkTracker.Size = new System.Drawing.Size(539, 297);
+            this.thirdTabHomeworkTracker.TabIndex = 0;
+            this.thirdTabHomeworkTracker.Tag = "1";
+            // 
+            // HomeworkTrackerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -140,7 +144,7 @@
             this.Controls.Add(this.outputTextBox);
             this.Controls.Add(this.readOnlyTextBox);
             this.Controls.Add(this.classTabControl);
-            this.Name = "homeworkTrackerForm";
+            this.Name = "HomeworkTrackerForm";
             this.Text = "Homework Tracker by Brandon Walker";
             this.classTabControl.ResumeLayout(false);
             this.firstClassTab.ResumeLayout(false);

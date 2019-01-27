@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ContentTracker
@@ -51,7 +45,7 @@ namespace ContentTracker
             this.onControlChanged();
         }
 
-        private void TaskGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void TaskGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             this.onControlChanged();
         }
@@ -97,5 +91,40 @@ namespace ContentTracker
 
             this.Tag = tagValue;
         }
+
+        public DataGridView GetTaskView()
+        {
+            return this.TaskGridView;
+        }
+
+        public List<string> GetCheckedItems()
+        {
+            var checkBoxIndex = 0;
+            var textBoxIndex = 1;
+            List<string> returnList = new List<string>();
+
+            foreach (DataGridViewRow currentRow in this.TaskGridView.Rows)
+            {
+                var currentCells = currentRow.Cells;
+                DataGridViewCheckBoxCell checkBoxCell = (DataGridViewCheckBoxCell) currentCells[checkBoxIndex];
+                DataGridViewTextBoxCell textCell = (DataGridViewTextBoxCell) currentCells[textBoxIndex];
+
+                bool isChecked = checkBoxCell.FormattedValue != null && bool.Parse(checkBoxCell.FormattedValue.ToString());
+                string textValue = string.Empty;
+                if (textCell.FormattedValue != null)
+                {
+                    textValue = textCell.FormattedValue.ToString();
+                }
+
+                if (!isChecked)
+                {
+                    returnList.Add(textValue);
+                }
+            }
+
+            return returnList;
+        }
+
+
     }
 }

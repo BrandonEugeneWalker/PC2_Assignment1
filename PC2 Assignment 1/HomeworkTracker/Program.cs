@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using HomeworkTracker.View;
 
 namespace HomeworkTracker
 {
@@ -16,7 +17,7 @@ namespace HomeworkTracker
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new homeworkTrackerForm());
+            Application.Run(new HomeworkTrackerForm());
         }
     }
 }

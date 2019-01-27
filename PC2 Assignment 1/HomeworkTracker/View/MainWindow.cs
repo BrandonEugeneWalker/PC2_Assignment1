@@ -1,39 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using ContentTracker;
+using HomeworkTracker.Main;
+using HomeworkTracker.View.Output;
 
-namespace HomeworkTracker
+namespace HomeworkTracker.View
 {
-    public partial class homeworkTrackerForm : Form
+    public partial class HomeworkTrackerForm : Form
     {
-
-        private Rectangle tabArea;
-        private RectangleF tabTextArea;
-
-        private enum RadioState
-        {
-            Low = 1,
-            Medium = 2,
-            High = 3
-        };
-
         private RadioState firstTabState = RadioState.Low;
         private RadioState secondTabState = RadioState.Low;
         private RadioState thirdTabState = RadioState.Low;
 
-        public homeworkTrackerForm()
+        private Dictionary<string, PriorityHomeworkTracker> tabControlDictionary = new Dictionary<string, PriorityHomeworkTracker>();
+
+        private List<TaskKeeper> taskCollection = new List<TaskKeeper>();
+
+
+        public HomeworkTrackerForm()
         {
             this.InitializeComponent();
             this.firstTabHomeworkTracker.ControlChanged += this.processControlChange;
             this.secondTabHomeworkTracker.ControlChanged += this.processControlChange;
             this.thirdTabHomeworkTracker.ControlChanged += this.processControlChange;
             this.classTabControl.DrawItem += this.classTabControl_DrawItem;
+            this.populateTabDictionary();
+            this.updateOutput();
         }
 
         private void processControlChange(object sender, EventArgs e)
@@ -41,6 +35,8 @@ namespace HomeworkTracker
             this.determineHomeworkTrackerTagValues();
             this.determineTabStates();
             this.classTabControl.Invalidate();
+            this.buildTaskKeeperCollection();
+            this.updateOutput();
         }
 
         private void classTabControl_DrawItem(object sender, DrawItemEventArgs e)
@@ -112,6 +108,38 @@ namespace HomeworkTracker
             this.firstTabHomeworkTracker.DetermineTagValue();
             this.secondTabHomeworkTracker.DetermineTagValue();
             this.thirdTabHomeworkTracker.DetermineTagValue();
+        }
+
+        private void buildTaskKeeperCollection()
+        {
+            this.taskCollection = new List<TaskKeeper>();
+            foreach (var currentKey in this.tabControlDictionary.Keys)
+            {
+                var currentHomeworkTracker = this.tabControlDictionary[currentKey];
+                var currentlySelectedItems = currentHomeworkTracker.GetCheckedItems();
+                var currentTrackerTagValue = int.Parse(currentHomeworkTracker.Tag.ToString());
+                RadioState currentTrackerState = (RadioState) currentTrackerTagValue;
+                var newKeeper = new TaskKeeper(currentKey, currentTrackerState, currentlySelectedItems);
+                this.taskCollection.Add(newKeeper);
+            }
+        }
+
+        private void populateTabDictionary()
+        {
+            var firstClassName = this.firstClassTab.Text;
+            var secondClassName = this.secondClassTab.Text;
+            var thirdClassName = this.thirdClassTab.Text;
+
+            this.tabControlDictionary.Add(firstClassName, this.firstTabHomeworkTracker);
+            this.tabControlDictionary.Add(secondClassName, this.secondTabHomeworkTracker);
+            this.tabControlDictionary.Add(thirdClassName, this.thirdTabHomeworkTracker);
+        }
+
+        private void updateOutput()
+        {
+            OutputBuilder newOutput = new OutputBuilder();
+            var outPutString = newOutput.BuildFullOutput(this.taskCollection);
+            this.outputTextBox.Text = outPutString;
         }
 
     }
