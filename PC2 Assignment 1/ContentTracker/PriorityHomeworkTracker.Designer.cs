@@ -36,9 +36,9 @@
             this.checkAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uncheckAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.priorityGroupBox = new System.Windows.Forms.GroupBox();
-            this.lowPriorityRadio = new System.Windows.Forms.RadioButton();
-            this.mediumPriorityRadio = new System.Windows.Forms.RadioButton();
             this.highPriorityRadio = new System.Windows.Forms.RadioButton();
+            this.mediumPriorityRadio = new System.Windows.Forms.RadioButton();
+            this.lowPriorityRadio = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.TaskGridView)).BeginInit();
             this.TaskGridContextMenu.SuspendLayout();
             this.priorityGroupBox.SuspendLayout();
@@ -106,18 +106,18 @@
             this.priorityGroupBox.TabStop = false;
             this.priorityGroupBox.Text = "Priority";
             // 
-            // lowPriorityRadio
+            // highPriorityRadio
             // 
-            this.lowPriorityRadio.AutoSize = true;
-            this.lowPriorityRadio.Checked = true;
-            this.lowPriorityRadio.Location = new System.Drawing.Point(19, 28);
-            this.lowPriorityRadio.Name = "lowPriorityRadio";
-            this.lowPriorityRadio.Size = new System.Drawing.Size(45, 17);
-            this.lowPriorityRadio.TabIndex = 0;
-            this.lowPriorityRadio.TabStop = true;
-            this.lowPriorityRadio.Text = "Low";
-            this.lowPriorityRadio.UseVisualStyleBackColor = true;
-            this.lowPriorityRadio.CheckedChanged += new System.EventHandler(this.priorityRadioChanged);
+            this.highPriorityRadio.AutoSize = true;
+            this.highPriorityRadio.Location = new System.Drawing.Point(19, 76);
+            this.highPriorityRadio.Name = "highPriorityRadio";
+            this.highPriorityRadio.Size = new System.Drawing.Size(47, 17);
+            this.highPriorityRadio.TabIndex = 2;
+            this.highPriorityRadio.TabStop = true;
+            this.highPriorityRadio.Tag = "3";
+            this.highPriorityRadio.Text = "High";
+            this.highPriorityRadio.UseVisualStyleBackColor = true;
+            this.highPriorityRadio.CheckedChanged += new System.EventHandler(this.priorityRadioChanged);
             // 
             // mediumPriorityRadio
             // 
@@ -127,21 +127,24 @@
             this.mediumPriorityRadio.Size = new System.Drawing.Size(62, 17);
             this.mediumPriorityRadio.TabIndex = 1;
             this.mediumPriorityRadio.TabStop = true;
+            this.mediumPriorityRadio.Tag = "2";
             this.mediumPriorityRadio.Text = "Medium";
             this.mediumPriorityRadio.UseVisualStyleBackColor = true;
             this.mediumPriorityRadio.CheckedChanged += new System.EventHandler(this.priorityRadioChanged);
             // 
-            // highPriorityRadio
+            // lowPriorityRadio
             // 
-            this.highPriorityRadio.AutoSize = true;
-            this.highPriorityRadio.Location = new System.Drawing.Point(19, 76);
-            this.highPriorityRadio.Name = "highPriorityRadio";
-            this.highPriorityRadio.Size = new System.Drawing.Size(47, 17);
-            this.highPriorityRadio.TabIndex = 2;
-            this.highPriorityRadio.TabStop = true;
-            this.highPriorityRadio.Text = "High";
-            this.highPriorityRadio.UseVisualStyleBackColor = true;
-            this.highPriorityRadio.CheckedChanged += new System.EventHandler(this.priorityRadioChanged);
+            this.lowPriorityRadio.AutoSize = true;
+            this.lowPriorityRadio.Checked = true;
+            this.lowPriorityRadio.Location = new System.Drawing.Point(19, 28);
+            this.lowPriorityRadio.Name = "lowPriorityRadio";
+            this.lowPriorityRadio.Size = new System.Drawing.Size(45, 17);
+            this.lowPriorityRadio.TabIndex = 0;
+            this.lowPriorityRadio.TabStop = true;
+            this.lowPriorityRadio.Tag = "1";
+            this.lowPriorityRadio.Text = "Low";
+            this.lowPriorityRadio.UseVisualStyleBackColor = true;
+            this.lowPriorityRadio.CheckedChanged += new System.EventHandler(this.priorityRadioChanged);
             // 
             // PriorityHomeworkTracker
             // 

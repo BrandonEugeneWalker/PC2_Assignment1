@@ -30,10 +30,10 @@
         {
             this.classTabControl = new System.Windows.Forms.TabControl();
             this.firstClassTab = new System.Windows.Forms.TabPage();
-            this.secondClassTab = new System.Windows.Forms.TabPage();
-            this.thirdClassTab = new System.Windows.Forms.TabPage();
             this.firstTabHomeworkTracker = new ContentTracker.PriorityHomeworkTracker();
+            this.secondClassTab = new System.Windows.Forms.TabPage();
             this.secondTabHomeworkTracker = new ContentTracker.PriorityHomeworkTracker();
+            this.thirdClassTab = new System.Windows.Forms.TabPage();
             this.thirdTabHomeworkTracker = new ContentTracker.PriorityHomeworkTracker();
             this.readOnlyTextBox = new System.Windows.Forms.TextBox();
             this.outputTextBox = new System.Windows.Forms.TextBox();
@@ -54,9 +54,11 @@
             this.classTabControl.SelectedIndex = 0;
             this.classTabControl.Size = new System.Drawing.Size(559, 343);
             this.classTabControl.TabIndex = 0;
+            this.classTabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.classTabControl_DrawItem);
             // 
             // firstClassTab
             // 
+            this.firstClassTab.BackColor = System.Drawing.Color.White;
             this.firstClassTab.Controls.Add(this.firstTabHomeworkTracker);
             this.firstClassTab.Location = new System.Drawing.Point(4, 22);
             this.firstClassTab.Name = "firstClassTab";
@@ -64,10 +66,18 @@
             this.firstClassTab.Size = new System.Drawing.Size(551, 317);
             this.firstClassTab.TabIndex = 0;
             this.firstClassTab.Text = "CS 1301";
-            this.firstClassTab.UseVisualStyleBackColor = true;
+            // 
+            // firstTabHomeworkTracker
+            // 
+            this.firstTabHomeworkTracker.BackColor = System.Drawing.Color.Transparent;
+            this.firstTabHomeworkTracker.Location = new System.Drawing.Point(6, 6);
+            this.firstTabHomeworkTracker.Name = "firstTabHomeworkTracker";
+            this.firstTabHomeworkTracker.Size = new System.Drawing.Size(539, 297);
+            this.firstTabHomeworkTracker.TabIndex = 0;
             // 
             // secondClassTab
             // 
+            this.secondClassTab.BackColor = System.Drawing.Color.White;
             this.secondClassTab.Controls.Add(this.secondTabHomeworkTracker);
             this.secondClassTab.Location = new System.Drawing.Point(4, 22);
             this.secondClassTab.Name = "secondClassTab";
@@ -75,25 +85,6 @@
             this.secondClassTab.Size = new System.Drawing.Size(551, 317);
             this.secondClassTab.TabIndex = 1;
             this.secondClassTab.Text = "CS 2100";
-            this.secondClassTab.UseVisualStyleBackColor = true;
-            // 
-            // thirdClassTab
-            // 
-            this.thirdClassTab.Controls.Add(this.thirdTabHomeworkTracker);
-            this.thirdClassTab.Location = new System.Drawing.Point(4, 22);
-            this.thirdClassTab.Name = "thirdClassTab";
-            this.thirdClassTab.Padding = new System.Windows.Forms.Padding(3);
-            this.thirdClassTab.Size = new System.Drawing.Size(551, 317);
-            this.thirdClassTab.TabIndex = 2;
-            this.thirdClassTab.Text = "ENGL 3405";
-            this.thirdClassTab.UseVisualStyleBackColor = true;
-            // 
-            // firstTabHomeworkTracker
-            // 
-            this.firstTabHomeworkTracker.Location = new System.Drawing.Point(6, 6);
-            this.firstTabHomeworkTracker.Name = "firstTabHomeworkTracker";
-            this.firstTabHomeworkTracker.Size = new System.Drawing.Size(539, 297);
-            this.firstTabHomeworkTracker.TabIndex = 0;
             // 
             // secondTabHomeworkTracker
             // 
@@ -101,6 +92,17 @@
             this.secondTabHomeworkTracker.Name = "secondTabHomeworkTracker";
             this.secondTabHomeworkTracker.Size = new System.Drawing.Size(530, 290);
             this.secondTabHomeworkTracker.TabIndex = 0;
+            // 
+            // thirdClassTab
+            // 
+            this.thirdClassTab.BackColor = System.Drawing.Color.White;
+            this.thirdClassTab.Controls.Add(this.thirdTabHomeworkTracker);
+            this.thirdClassTab.Location = new System.Drawing.Point(4, 22);
+            this.thirdClassTab.Name = "thirdClassTab";
+            this.thirdClassTab.Padding = new System.Windows.Forms.Padding(3);
+            this.thirdClassTab.Size = new System.Drawing.Size(551, 317);
+            this.thirdClassTab.TabIndex = 2;
+            this.thirdClassTab.Text = "ENGL 3405";
             // 
             // thirdTabHomeworkTracker
             // 

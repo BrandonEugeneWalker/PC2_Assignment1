@@ -22,6 +22,7 @@ namespace ContentTracker
 
         private void onControlChanged()
         {
+            this.DetermineTagValue();
             this.ControlChanged?.Invoke(this, EventArgs.Empty);
         }
 
@@ -71,6 +72,30 @@ namespace ContentTracker
                 DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridRow.Cells[0];
                 cell.Value = false;
             }
+        }
+
+        /// <summary>
+        /// Determines the tag value of the control which changed depending on which radio button is selected.
+        /// </summary>
+        public void DetermineTagValue()
+        {
+            object tagValue = null;
+            if (this.lowPriorityRadio.Checked)
+            {
+                tagValue = this.lowPriorityRadio.Tag;
+            }
+
+            if (this.mediumPriorityRadio.Checked)
+            {
+                tagValue = this.mediumPriorityRadio.Tag;
+            }
+
+            if (this.highPriorityRadio.Checked)
+            {
+                tagValue = this.highPriorityRadio.Tag;
+            }
+
+            this.Tag = tagValue;
         }
     }
 }
