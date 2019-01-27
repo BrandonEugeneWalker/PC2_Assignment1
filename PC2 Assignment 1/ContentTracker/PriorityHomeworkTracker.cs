@@ -25,7 +25,6 @@ namespace ContentTracker
             this.ControlChanged?.Invoke(this, EventArgs.Empty);
         }
 
-
         private void checkAllToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.checkAllTaskBoxes();
