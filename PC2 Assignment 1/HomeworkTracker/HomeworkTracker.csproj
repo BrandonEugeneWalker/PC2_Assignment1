@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IO\HomeworkLoader.cs" />
+    <Compile Include="IO\HomeworkSaver.cs" />
     <Compile Include="Main\TaskKeeper.cs" />
     <Compile Include="View\MainWindow.cs">
       <SubType>Form</SubType>
@@ -88,9 +90,6 @@
       <Name>ContentTracker</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IO\" />
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

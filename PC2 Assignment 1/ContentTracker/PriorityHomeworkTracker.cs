@@ -4,15 +4,30 @@ using System.Windows.Forms;
 
 namespace ContentTracker
 {
-    public partial class PriorityHomeworkTracker: UserControl
+    /// <summary>
+    ///     This control allows a user to specify a homework priority and create a check list of things for them to do.
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.UserControl" />
+    public partial class PriorityHomeworkTracker : UserControl
     {
+        #region Constructors
 
-        public event EventHandler ControlChanged;
-
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="PriorityHomeworkTracker" /> class.
+        /// </summary>
         public PriorityHomeworkTracker()
         {
             this.InitializeComponent();
         }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        ///     Occurs when [control changed].
+        /// </summary>
+        public event EventHandler ControlChanged;
 
         private void onControlChanged()
         {
@@ -54,7 +69,7 @@ namespace ContentTracker
         {
             foreach (DataGridViewRow dataGridRow in this.TaskGridView.Rows)
             {
-                DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell) dataGridRow.Cells[0];
+                var cell = (DataGridViewCheckBoxCell) dataGridRow.Cells[0];
                 cell.Value = true;
             }
         }
@@ -63,13 +78,13 @@ namespace ContentTracker
         {
             foreach (DataGridViewRow dataGridRow in this.TaskGridView.Rows)
             {
-                DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dataGridRow.Cells[0];
+                var cell = (DataGridViewCheckBoxCell) dataGridRow.Cells[0];
                 cell.Value = false;
             }
         }
 
         /// <summary>
-        /// Determines the tag value of the control which changed depending on which radio button is selected.
+        ///     Determines the tag value of the control which changed depending on which radio button is selected.
         /// </summary>
         public void DetermineTagValue()
         {
@@ -89,28 +104,30 @@ namespace ContentTracker
                 tagValue = this.highPriorityRadio.Tag;
             }
 
-            this.Tag = tagValue;
+            Tag = tagValue;
         }
 
-        public DataGridView GetTaskView()
-        {
-            return this.TaskGridView;
-        }
-
+        /// <summary>
+        ///     Gets the checked items in the homework tracker.
+        /// </summary>
+        /// <returns>
+        ///     A list containing all of the checked items.
+        /// </returns>
         public List<string> GetCheckedItems()
         {
             var checkBoxIndex = 0;
             var textBoxIndex = 1;
-            List<string> returnList = new List<string>();
+            var returnList = new List<string>();
 
             foreach (DataGridViewRow currentRow in this.TaskGridView.Rows)
             {
                 var currentCells = currentRow.Cells;
-                DataGridViewCheckBoxCell checkBoxCell = (DataGridViewCheckBoxCell) currentCells[checkBoxIndex];
-                DataGridViewTextBoxCell textCell = (DataGridViewTextBoxCell) currentCells[textBoxIndex];
+                var checkBoxCell = (DataGridViewCheckBoxCell) currentCells[checkBoxIndex];
+                var textCell = (DataGridViewTextBoxCell) currentCells[textBoxIndex];
 
-                bool isChecked = checkBoxCell.FormattedValue != null && bool.Parse(checkBoxCell.FormattedValue.ToString());
-                string textValue = string.Empty;
+                var isChecked = checkBoxCell.FormattedValue != null &&
+                                bool.Parse(checkBoxCell.FormattedValue.ToString());
+                var textValue = string.Empty;
                 if (textCell.FormattedValue != null)
                 {
                     textValue = textCell.FormattedValue.ToString();
@@ -125,6 +142,28 @@ namespace ContentTracker
             return returnList;
         }
 
+        /// <summary>
+        ///     Creates new row in the homework tracker.
+        /// </summary>
+        /// <param name="isChecked">if set to <c>true</c> [is checked].</param>
+        /// <param name="textValue">The text value.</param>
+        public void InsertNewRow(bool isChecked, string textValue)
+        {
+            var newRow = (DataGridViewRow) this.TaskGridView.Rows[0].Clone();
+            newRow.Cells[0].Value = isChecked;
+            newRow.Cells[1].Value = textValue;
 
+            this.TaskGridView.Rows.Add(newRow);
+        }
+
+        /// <summary>
+        ///     Clears the rows in the homework tracker.
+        /// </summary>
+        public void ClearRows()
+        {
+            this.TaskGridView.Rows.Clear();
+        }
+
+        #endregion
     }
 }

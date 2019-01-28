@@ -4,18 +4,28 @@ using HomeworkTracker.Main;
 
 namespace HomeworkTracker.View.Output
 {
+    /// <summary>
+    /// Handles building the output for the homework tracker.
+    /// </summary>
     public class OutputBuilder
     {
         private const string LowPriorityHeader = "Low priority class(es):";
         private const string MediumPriorityHeader = "Medium priority class(es):";
         private const string HighPriorityHeader = "High priority class(es):";
         private const string SectionSeparator = "--------------------";
-        private StringBuilder outputStringBuilder = new StringBuilder();
-        private StringBuilder lowPriorityStringBuilder = new StringBuilder();
-        private StringBuilder mediumPriorityStringBuilder = new StringBuilder();
-        private StringBuilder highPriorityStringBuilder = new StringBuilder();
+        private readonly StringBuilder outputStringBuilder = new StringBuilder();
+        private readonly StringBuilder lowPriorityStringBuilder = new StringBuilder();
+        private readonly StringBuilder mediumPriorityStringBuilder = new StringBuilder();
+        private readonly StringBuilder highPriorityStringBuilder = new StringBuilder();
 
 
+        /// <summary>
+        /// Builds the full output.
+        /// </summary>
+        /// <param name="tabTasks">The tab tasks.</param>
+        /// <returns>
+        /// A string containing the full text output ready to be used.
+        /// </returns>
         public string BuildFullOutput(List<TaskKeeper> tabTasks)
         {
             this.buildBasicOutput();

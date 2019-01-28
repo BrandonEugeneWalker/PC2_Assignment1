@@ -1,5 +1,8 @@
-﻿namespace HomeworkTracker
+﻿namespace HomeworkTracker.View
 {
+    /// <summary>
+    ///     This enumeration handles the various priority types that is used by the system.
+    /// </summary>
     public enum RadioState
     {
         Low = 1,

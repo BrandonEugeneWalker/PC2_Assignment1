@@ -1,24 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using ContentTracker;
+using HomeworkTracker.IO;
 using HomeworkTracker.Main;
 using HomeworkTracker.View.Output;
 
 namespace HomeworkTracker.View
 {
+    /// <summary>
+    ///     Handles the creation and showing of the MainWindow of the application.
+    /// </summary>
+    /// <seealso cref="System.Windows.Forms.Form" />
     public partial class HomeworkTrackerForm : Form
     {
+        #region Data members
+
         private RadioState firstTabState = RadioState.Low;
         private RadioState secondTabState = RadioState.Low;
         private RadioState thirdTabState = RadioState.Low;
 
-        private Dictionary<string, PriorityHomeworkTracker> tabControlDictionary = new Dictionary<string, PriorityHomeworkTracker>();
+        private readonly Dictionary<string, PriorityHomeworkTracker> tabControlDictionary =
+            new Dictionary<string, PriorityHomeworkTracker>();
 
         private List<TaskKeeper> taskCollection = new List<TaskKeeper>();
 
+        #endregion
 
+        #region Constructors
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="HomeworkTrackerForm" /> class.
+        /// </summary>
         public HomeworkTrackerForm()
         {
             this.InitializeComponent();
@@ -26,9 +41,15 @@ namespace HomeworkTracker.View
             this.secondTabHomeworkTracker.ControlChanged += this.processControlChange;
             this.thirdTabHomeworkTracker.ControlChanged += this.processControlChange;
             this.classTabControl.DrawItem += this.classTabControl_DrawItem;
+
             this.populateTabDictionary();
+            this.buildDefaultOutput();
             this.updateOutput();
         }
+
+        #endregion
+
+        #region Methods
 
         private void processControlChange(object sender, EventArgs e)
         {
@@ -44,13 +65,12 @@ namespace HomeworkTracker.View
             var currentTabState = this.getTabRadioState(e.Index);
             var currentTabColor = this.determineTabColor(currentTabState);
 
-
-            TabPage page = this.classTabControl.TabPages[e.Index];
+            var page = this.classTabControl.TabPages[e.Index];
 
             e.Graphics.FillRectangle(new SolidBrush(currentTabColor), e.Bounds);
 
-            Rectangle paddedBounds = e.Bounds;
-            int yOffset = (e.State == DrawItemState.Selected) ? -2 : 1;
+            var paddedBounds = e.Bounds;
+            var yOffset = e.State == DrawItemState.Selected ? -2 : 1;
             paddedBounds.Offset(1, yOffset);
             TextRenderer.DrawText(e.Graphics, page.Text, Font, paddedBounds, page.ForeColor);
         }
@@ -84,7 +104,7 @@ namespace HomeworkTracker.View
 
         private RadioState getTabRadioState(int index)
         {
-            RadioState returnState = RadioState.Low;
+            var returnState = RadioState.Low;
             if (index == 0)
             {
                 returnState = this.firstTabState;
@@ -118,7 +138,7 @@ namespace HomeworkTracker.View
                 var currentHomeworkTracker = this.tabControlDictionary[currentKey];
                 var currentlySelectedItems = currentHomeworkTracker.GetCheckedItems();
                 var currentTrackerTagValue = int.Parse(currentHomeworkTracker.Tag.ToString());
-                RadioState currentTrackerState = (RadioState) currentTrackerTagValue;
+                var currentTrackerState = (RadioState) currentTrackerTagValue;
                 var newKeeper = new TaskKeeper(currentKey, currentTrackerState, currentlySelectedItems);
                 this.taskCollection.Add(newKeeper);
             }
@@ -137,10 +157,102 @@ namespace HomeworkTracker.View
 
         private void updateOutput()
         {
-            OutputBuilder newOutput = new OutputBuilder();
+            var newOutput = new OutputBuilder();
             var outPutString = newOutput.BuildFullOutput(this.taskCollection);
             this.outputTextBox.Text = outPutString;
         }
 
+        private void buildDefaultOutput()
+        {
+            var firstClassDefaultTask = "Complete Assignment 1.";
+            var secondClassDefaultTask = "Read Chapter 3 In HTML For Beginners.";
+            var thirdClassDefaultTask = "Have resume printed and laminated by Thursday.";
+
+            this.firstTabHomeworkTracker.InsertNewRow(false, firstClassDefaultTask);
+            this.secondTabHomeworkTracker.InsertNewRow(false, secondClassDefaultTask);
+            this.thirdTabHomeworkTracker.InsertNewRow(false, thirdClassDefaultTask);
+        }
+
+        private void loadHomeworkData(object sender, EventArgs e)
+        {
+            try
+            {
+                var homeworkLoader = new HomeworkLoader();
+
+                var loadedData = homeworkLoader.LoadHomeworkTasks();
+
+                var firstTabData = loadedData[0];
+                var secondTabData = loadedData[1];
+                var thirdTabData = loadedData[2];
+
+                this.clearAllHomeworkTrackers();
+
+                foreach (var currentString in firstTabData)
+                {
+                    this.firstTabHomeworkTracker.InsertNewRow(false, currentString);
+                }
+
+                foreach (var currentString in secondTabData)
+                {
+                    this.secondTabHomeworkTracker.InsertNewRow(false, currentString);
+                }
+
+                foreach (var currentString in thirdTabData)
+                {
+                    this.thirdTabHomeworkTracker.InsertNewRow(false, currentString);
+                }
+
+                this.showSuccessMessage();
+            }
+            catch (FileNotFoundException)
+            {
+                this.showFailureMessage();
+            }
+        }
+
+        private void clearAllHomeworkTrackers()
+        {
+            this.firstTabHomeworkTracker.ClearRows();
+            this.secondTabHomeworkTracker.ClearRows();
+            this.thirdTabHomeworkTracker.ClearRows();
+        }
+
+        private void saveHomeworkData(object sender, EventArgs e)
+        {
+            var dataToSave = new List<List<string>>();
+
+            var firstTrackerData = this.firstTabHomeworkTracker.GetCheckedItems();
+            var secondTrackerData = this.secondTabHomeworkTracker.GetCheckedItems();
+            var thirdTrackerData = this.thirdTabHomeworkTracker.GetCheckedItems();
+
+            dataToSave.Add(firstTrackerData);
+            dataToSave.Add(secondTrackerData);
+            dataToSave.Add(thirdTrackerData);
+
+            var homeworkSaver = new HomeworkSaver();
+            homeworkSaver.SaveHomeworkTasks(dataToSave);
+
+            this.showSuccessMessage();
+        }
+
+        private void showSuccessMessage()
+        {
+            var buttons = MessageBoxButtons.OK;
+            var message = "The operation was successful.";
+            var caption = "Save/Open Operation";
+
+            MessageBox.Show(message, caption, buttons);
+        }
+
+        private void showFailureMessage()
+        {
+            var buttons = MessageBoxButtons.OK;
+            var message = "There is no existing save data.";
+            var caption = "Open Operation";
+
+            MessageBox.Show(message, caption, buttons);
+        }
+
+        #endregion
     }
 }
