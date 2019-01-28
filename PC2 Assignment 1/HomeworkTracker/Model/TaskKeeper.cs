@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using HomeworkTracker.View;
 
-namespace HomeworkTracker.Main
+namespace HomeworkTracker.Model
 {
     /// <summary>
     ///     Keeps track of some of the homework tracker data to make it more portable.

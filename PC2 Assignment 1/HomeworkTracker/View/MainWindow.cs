@@ -5,7 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using ContentTracker;
 using HomeworkTracker.IO;
-using HomeworkTracker.Main;
+using HomeworkTracker.Model;
 using HomeworkTracker.View.Output;
 
 namespace HomeworkTracker.View

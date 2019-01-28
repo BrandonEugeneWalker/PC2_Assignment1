@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using HomeworkTracker.Main;
+using HomeworkTracker.Model;
 
 namespace HomeworkTracker.View.Output
 {
