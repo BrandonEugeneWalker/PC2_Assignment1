@@ -37,7 +37,7 @@
             this.thirdTabHomeworkTracker = new ContentTracker.PriorityHomeworkTracker();
             this.readOnlyTextBox = new System.Windows.Forms.TextBox();
             this.outputTextBox = new System.Windows.Forms.TextBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,7 +45,7 @@
             this.firstClassTab.SuspendLayout();
             this.secondClassTab.SuspendLayout();
             this.thirdClassTab.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // classTabControl
@@ -141,15 +141,15 @@
             this.outputTextBox.TabIndex = 2;
             this.outputTextBox.Text = "Output will be here.";
             // 
-            // menuStrip1
+            // mainMenuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(585, 27);
-            this.menuStrip1.TabIndex = 3;
-            this.menuStrip1.Text = "menuStrip1";
+            this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.mainMenuStrip.Name = "mainMenuStrip";
+            this.mainMenuStrip.Size = new System.Drawing.Size(585, 27);
+            this.mainMenuStrip.TabIndex = 3;
+            this.mainMenuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -187,16 +187,16 @@
             this.Controls.Add(this.outputTextBox);
             this.Controls.Add(this.readOnlyTextBox);
             this.Controls.Add(this.classTabControl);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.mainMenuStrip);
+            this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "HomeworkTrackerForm";
             this.Text = "Homework Tracker by Brandon Walker";
             this.classTabControl.ResumeLayout(false);
             this.firstClassTab.ResumeLayout(false);
             this.secondClassTab.ResumeLayout(false);
             this.thirdClassTab.ResumeLayout(false);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.mainMenuStrip.ResumeLayout(false);
+            this.mainMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,7 +213,7 @@
         private ContentTracker.PriorityHomeworkTracker thirdTabHomeworkTracker;
         private System.Windows.Forms.TextBox readOnlyTextBox;
         private System.Windows.Forms.TextBox outputTextBox;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadMenuItem;
