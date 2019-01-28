@@ -44,7 +44,7 @@ namespace HomeworkTracker.View
 
             this.populateTabDictionary();
             this.buildDefaultOutput();
-            this.updateOutput();
+            this.processControlChange(this, EventArgs.Empty);
         }
 
         #endregion
@@ -202,6 +202,7 @@ namespace HomeworkTracker.View
                     this.thirdTabHomeworkTracker.InsertNewRow(false, currentString);
                 }
 
+                this.processControlChange(this, EventArgs.Empty);
                 this.showSuccessMessage();
             }
             catch (FileNotFoundException)
