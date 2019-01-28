@@ -1,0 +1,6 @@
+﻿Existing Issues:
+
+1.) When saving and loading data it currently does not keep track of the class priority.
+2.) When loading data sometimes extra blank rows are present under the loaded data.
+3.) Output will not update till the text fields inside the data grid view lose focus, you said not to worry about this.
+4.) Output will not update till the changed check box loses focus, you said not to worry about this.
